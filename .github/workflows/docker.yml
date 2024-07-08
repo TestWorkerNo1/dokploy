@@ -3,7 +3,7 @@ name: dokploy
 on:
   push:
     paths:
-      - '*.**'
+      - "*.**"
 
 jobs:
   push_to_registry:
