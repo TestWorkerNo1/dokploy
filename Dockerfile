@@ -49,11 +49,16 @@ RUN curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh && rm
 
 # Install Nixpacks and tsx
 # | VERBOSE=1 VERSION=1.21.0 bash
-RUN curl -sSL https://nixpacks.com/install.sh -o install.sh \
-    && chmod +x install.sh \
-    && ./install.sh \
-    && pnpm install -g tsx
+RUN curl -sSL https://nixpacks.com/install.sh -o install.sh 
+RUN chmod +x install.sh
+RUN ./install.sh
+RUN pnpm install -g tsx
 
 
 # Install buildpacks
 RUN curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.32.1/pack-v0.32.1-linux.tgz" | tar -C /usr/local/bin/ --no-same-owner -xzv pack
+
+# Expose port
+EXPOSE 3000
+
+CMD ["pnpm", "start"]
